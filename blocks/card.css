@@ -9,6 +9,11 @@
   display: block;
 }
 
+.card__title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
 .card__content {
   display: flex;
   align-items: center;

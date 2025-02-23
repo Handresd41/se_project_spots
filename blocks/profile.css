@@ -15,17 +15,25 @@
 
 .profile__name {
   margin: 0 0 12px;
+  font-weight: 500;
+  font-size: 32px;
 }
 
 .profile__description {
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .profile__edit-btn {
   margin-top: auto;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .profile__add-btn {
   margin-left: auto;
   border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
 }
