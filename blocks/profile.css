@@ -6,8 +6,8 @@
 
 .profile__avatar {
   margin-right: 20px;
-  height: 190px;
-  width: 190px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .profile__column {
@@ -20,6 +20,7 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 1;
+  color: #212121;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -38,6 +39,8 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
+  color: #212121;
+  opacity: 70%;
 }
 
 .profile__edit-btn {
@@ -50,8 +53,11 @@
   border-radius: 90px;
   display: flex;
   gap: 8px;
-  height: 16px;
-  width: 120px;
+  color: #212121;
+}
+
+.profile__edit-btn:hover {
+  cursor: pointer;
 }
 
 .profile__add-btn {
@@ -69,6 +75,11 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+  border: none;
+}
+
+.profile__add-btn:hover {
+  cursor: pointer;
 }
 
 .profile__add-icon {

@@ -1,6 +1,7 @@
 .footer {
   display: flex;
   justify-content: center;
+  padding: 60px 0 0;
 }
 
 .footer__copyright {
@@ -9,4 +10,5 @@
   font-weight: 400;
   color: #212121;
   opacity: 70%;
+  margin: 0;
 }
