@@ -21,3 +21,5 @@ This is the webpage to my video about my description of my project
 This webpage is deployed to GitHub Pages
 
 -[Deployment Link] (https://handresd41.github.io/se_project_spots/)
+
+-[Video Link] (https://drive.google.com/file/d/107TUEIbHe-pHCxL09cfwizd2lyXSMBA_/view?usp=sharing)
