@@ -62,6 +62,10 @@
   border-radius: 8px;
 }
 
+.modal__input:hover {
+  cursor: pointer;
+}
+
 .modal__submit-btn {
   width: 156px;
   padding: 18px 0;
@@ -73,11 +77,19 @@
   color: #fcf5e5;
 }
 
+.modal__submit-btn:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
 .modal__image-btn {
-  color: #212112;
-  opacity: 40%;
   height: 22.63px;
   width: 22.63px;
+}
+
+.modal__image-btn:hover {
+  cursor: pointer;
+  color: #212112;
 }
 
 @media screen and (max-width: 627px) {
@@ -105,5 +117,9 @@
 
   .modal__submit-btn {
     width: 100%;
+  }
+
+  .modal__input {
+    font-size: 16px;
   }
 }
