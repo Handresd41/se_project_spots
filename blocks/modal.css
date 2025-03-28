@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   visibility: hidden;
+  font-family: "Poppins", "Arial", "Helvetica", sans-serif;
   padding: 0 20px;
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s ease-in;
@@ -59,18 +60,26 @@
 .modal__close-btn_type_preview {
   background-image: url("../images/Close_icon-white.svg");
   top: 0;
-  right: -40px;
+  right: -52.5px;
   opacity: 1;
   height: 40px;
   width: 40px;
+  max-width: 90vw;
+}
+
+.modal__close-btn_type_preview:hover {
+  cursor: pointer;
+  opacity: 40%;
 }
 
 .modal__caption {
   font-size: 20px;
   font-weight: 500;
-  width: 135px;
+  line-height: 1.2;
+  width: fit-content;
   height: 32px;
   background-color: #212121;
+  padding: 4px 8px;
   color: #fff;
   border-radius: 8px;
   margin: 0;
@@ -128,11 +137,12 @@
 .modal__image-btn {
   height: 40px;
   width: 40px;
+  opacity: 40%;
 }
 
 .modal__image-btn:hover {
   cursor: pointer;
-  opacity: 40%;
+  opacity: 1;
 }
 
 @media screen and (max-width: 627px) {
@@ -164,5 +174,21 @@
 
   .modal__input {
     font-size: 16px;
+  }
+
+  .modal__image {
+    width: 288px;
+  }
+
+  .modal__caption {
+    margin-top: 8.43px;
+    font-size: 16px;
+    height: auto;
+    width: fit-content;
+  }
+
+  .modal__close-btn_type_preview {
+    top: -49px;
+    right: -1px;
   }
 }
