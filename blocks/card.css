@@ -47,7 +47,7 @@
 }
 
 .card__like-btn_liked {
-  background-image: url(../images/like-icon-liked.svg);
+  background-image: url(../images/Like-btn-red.svg);
   opacity: 1;
 }
 
