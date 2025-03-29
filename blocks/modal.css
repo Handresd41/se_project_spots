@@ -177,7 +177,7 @@
   }
 
   .modal__image {
-    width: 288px;
+    max-width: 90vw;
   }
 
   .modal__caption {
@@ -188,7 +188,7 @@
   }
 
   .modal__close-btn_type_preview {
-    top: -49px;
-    right: -1px;
+    top: -40px;
+    right: -10px;
   }
 }
