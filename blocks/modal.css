@@ -118,6 +118,16 @@
   cursor: pointer;
 }
 
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+.modal__error {
+  display: block;
+  color: rgba(255, 0, 0);
+  font-size: 16px;
+}
+
 .modal__submit-btn {
   width: 156px;
   padding: 18px 32px;
@@ -132,6 +142,12 @@
 .modal__submit-btn:hover {
   cursor: pointer;
   opacity: 80%;
+}
+
+.modal__submit-btn_disabled {
+  background-color: #212121;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .modal__image-btn {
