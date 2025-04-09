@@ -26,14 +26,14 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonEl, config) => {
   if (hasInvalidInput(inputList)) {
-    disabledButton(buttonEl, config);
+    disableButton(buttonEl, config);
   } else {
     buttonEl.disabled = false;
     buttonEl.classList.remove(config.inactiveButtonClass);
   }
 };
 
-const disabledButton = (buttonEl, config) => {
+const disableButton = (buttonEl, config) => {
   buttonEl.disabled = true;
   buttonEl.classList.add(config.inactiveButtonClass);
 };
@@ -48,7 +48,9 @@ const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonElement = formEl.querySelector(config.submitButtonSelector);
 
-  toggleButtonState(inputList, buttonElement, config);
+  formElement.addEventListener("reset", () => {
+    disableButton(buttonElement, config);
+  });
 
   inputList.forEach((inputEl) => {
     inputEl.addEventListener("input", function () {

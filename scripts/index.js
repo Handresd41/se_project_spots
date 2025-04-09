@@ -78,7 +78,8 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
   closeModal(cardModal);
   evt.target.reset();
-  disabledButton(cardSubmitButton, settings);
+
+  disableButton(cardSubmitButton, settings);
 }
 
 function handleEscClose(evt) {
@@ -122,15 +123,15 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscClose);
-  modal.addEventListener("click", (event) => {
-    if (event.target === event.currentTarget) {
-      closeModal(modal);
+const popups = document.querySelectorAll(".modal");
+
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      closePopup(popup);
     }
   });
-}
+});
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
@@ -169,9 +170,9 @@ editFormElement.addEventListener("submit", handleEditFormSubmit);
 
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach((item) => {
+function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
-  cardsList.prepend(cardElement);
-});
+  cardsList[method](cardElement);
+}
 
 enableValidation(settings);
