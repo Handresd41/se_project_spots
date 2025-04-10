@@ -48,7 +48,7 @@ const setEventListeners = (formEl, config) => {
   const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
   const buttonElement = formEl.querySelector(config.submitButtonSelector);
 
-  formElement.addEventListener("reset", () => {
+  formEl.addEventListener("reset", () => {
     disableButton(buttonElement, config);
   });
 

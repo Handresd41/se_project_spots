@@ -13,7 +13,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
   },
   {
-    name: "Resturant terrace",
+    name: "Restaurant terrace",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
   },
   {
@@ -74,8 +74,7 @@ function handleEditFormSubmit(evt) {
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
-  const cardElement = getCardElement(inputValues);
-  cardsList.prepend(cardElement);
+  renderCard(inputValues);
   closeModal(cardModal);
   evt.target.reset();
 
@@ -128,10 +127,15 @@ const popups = document.querySelectorAll(".modal");
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("modal_opened")) {
-      closePopup(popup);
+      closeModal(popup);
     }
   });
 });
+
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscClose);
+}
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
@@ -174,5 +178,9 @@ function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
   cardsList[method](cardElement);
 }
+
+initialCards.forEach((cardData) => {
+  renderCard(cardData, "append");
+});
 
 enableValidation(settings);
