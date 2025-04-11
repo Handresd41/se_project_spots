@@ -77,8 +77,6 @@ function handleAddCardSubmit(evt) {
   renderCard(inputValues);
   closeModal(cardModal);
   evt.target.reset();
-
-  disableButton(cardSubmitButton, settings);
 }
 
 function handleEscClose(evt) {
