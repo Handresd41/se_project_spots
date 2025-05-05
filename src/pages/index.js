@@ -1,3 +1,6 @@
+import "./index.css";
+import { enableValidation } from "./validation.js";
+
 const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -182,3 +185,4 @@ initialCards.forEach((cardData) => {
 });
 
 enableValidation(settings);
+enableValidation(validationConfig);
