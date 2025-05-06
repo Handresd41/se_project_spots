@@ -1,5 +1,10 @@
 import "./index.css";
-import { enableValidation } from "./validation.js";
+import logo from "../images/logo.svg";
+import avatar from "../images/avatar.jpg";
+import pencil from "../images/pencil.svg";
+import plus from "../images/plus.svg";
+import closeBtn from "../images/close-btn.svg";
+import { enableValidation, resetValidation } from "../scripts/validation.js";
 
 const settings = {
   formSelector: ".modal__form",
@@ -66,6 +71,16 @@ const previewModalCloseBtn = previewModal.querySelector(
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".header__logo").src = logo;
+  document.querySelector(".profile__avatar").src = avatar;
+  document.querySelector(".profile__edit-btn img").src = pencil;
+  document.querySelector(".profile__add-icon").src = plus;
+  document
+    .querySelectorAll(".modal__image-btn")
+    .forEach((btn) => (btn.src = closeBtn));
+});
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
@@ -185,4 +200,3 @@ initialCards.forEach((cardData) => {
 });
 
 enableValidation(settings);
-enableValidation(validationConfig);
