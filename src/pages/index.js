@@ -188,10 +188,8 @@ function handleEscClose(evt) {
 }
 
 function handleDeleteCard(cardElement, cardId) {
-  console.log("1. Initial cardId received:", cardId);
   selectedCard = cardElement;
   selectedCardId = cardId;
-  console.log("2. selectedCardId after setting:", selectedCardId);
   openModal(deleteModal);
 }
 
