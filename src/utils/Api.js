@@ -2,6 +2,18 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
+    this._checkResponse = this._checkResponse.bind(this);
+  }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  }
+
+  _request(url, options) {
+    return fetch(url, options).then(this._checkResponse);
   }
 
   getAppInfo() {
@@ -9,13 +21,8 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
     });
   }
 
@@ -27,23 +34,15 @@ class Api {
         name: name,
         link: link,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then((res) => this._checkResponse(res));
   }
+
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return this._request(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
     });
   }
+
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
