@@ -18,33 +18,6 @@ const settings = {
   errorClass: "modal__error_visible",
 };
 
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the tree",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -53,19 +26,21 @@ const api = new Api({
   },
 });
 
-let _myId;
+let cardId;
 
 api
   .getAppInfo()
   .then(([cards, userData]) => {
-    _myId = userData._id;
-    cards.forEach((cardData) => {
-      renderCard(cardData, "append");
-    });
+    cardId = userData._id;
+    profileName.textContent = userData.name;
+    profileDescription.textContent = userData.about;
+    profileAvatar.src = userData.avatar;
+    renderCards(cards, "append");
   })
   .catch(console.error);
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
+const profileAvatar = document.querySelector(".profile__avatar");
 const cardModalBtn = document.querySelector(".profile__add-btn");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const profileName = document.querySelector(".profile__name");
@@ -104,6 +79,8 @@ const previewModalCloseBtn = previewModal.querySelector(
   ".modal__close-btn_type_preview"
 );
 
+const closeButtons = document.querySelectorAll(".modal__close-btn");
+
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
@@ -119,6 +96,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .querySelectorAll(".modal__image-btn")
     .forEach((btn) => (btn.src = closeBtn));
 });
+
+function renderCards(cardsArray, method = "prepend") {
+  cardsArray.forEach((card) => {
+    renderCard(card, method);
+  });
+}
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
@@ -164,11 +147,12 @@ function handleAddCardSubmit(evt) {
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
   const avatarLink = avatarInput.value;
+  console.log("Avatar link being sent:", avatarLink);
   const submitBtn = evt.submitter;
   setButtonText(submitBtn, true);
 
   api
-    .editAvatarInfo({ avatar: avatarLink })
+    .editAvatarInfo(avatarLink)
     .then((userData) => {
       profileAvatar.src = userData.avatar;
       closeModal(avatarModal);
@@ -293,20 +277,8 @@ profileEditButton.addEventListener("click", () => {
   openModal(editModal);
 });
 
-editModalCloseBtn.addEventListener("click", () => {
-  closeModal(editModal);
-});
-
 cardModalBtn.addEventListener("click", () => {
   openModal(cardModal);
-});
-
-cardModalCloseBtn.addEventListener("click", () => {
-  closeModal(cardModal);
-});
-
-previewModalCloseBtn.addEventListener("click", () => {
-  closeModal(previewModal);
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
@@ -315,19 +287,23 @@ avatarModalBtn.addEventListener("click", () => {
   openModal(avatarModal);
 });
 
-avatarModalCloseBtn.addEventListener("click", () => {
-  closeModal(avatarModal);
-});
-
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
 deleteForm.addEventListener("submit", handleDeleteSubmit);
 
+const cancelButton = deleteModal.querySelector(".modal__cancel-btn");
+cancelButton.addEventListener("click", () => closeModal(deleteModal));
+
 function renderCard(item, method = "prepend") {
   const cardElement = getCardElement(item);
   cardsList[method](cardElement);
 }
+
+closeButtons.forEach((button) => {
+  const modal = button.closest(".modal");
+  button.addEventListener("click", () => closeModal(modal));
+});
 
 enableValidation(settings);
