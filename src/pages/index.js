@@ -35,7 +35,7 @@ api
     profileName.textContent = userData.name;
     profileDescription.textContent = userData.about;
     profileAvatar.src = userData.avatar;
-    renderCards(cards);
+    renderCards(cards, "append");
   })
   .catch(console.error);
 
